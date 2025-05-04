@@ -1,0 +1,545 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  max-width: 400px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.formGroup {
+  margin-bottom: var(--spacing-md);
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-base);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.flexContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.linkText {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+}
+
+.link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.link:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.errorText {
+  color: #ff4d4f;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  min-height: 20px;
+}
+
+.inputError {
+  border-color: #ff4d4f !important;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.25rem;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .status {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .form {
+    padding: 1rem;
+  }
+
+  .input {
+    padding: 0.625rem;
+  }
+
+  .button {
+    padding: 0.75rem;
+  }
+
+  .heading {
+    font-size: 1.125rem;
+  }
+
+  .linkText {
+    font-size: var(--font-size-sm);
+  }
+
+  .errorText {
+    font-size: calc(var(--font-size-sm) - 1px);
+  }
+
+  .loanInfo {
+    padding: 0.75rem;
+  }
+  
+  .subheading {
+    font-size: 0.875rem;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: var(--font-size-lg);
+  color: var(--text-color);
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.cardTitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-color);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.cardContent p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.status {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-top: var(--spacing-sm);
+}
+
+.statusUpToDate {
+  background-color: #52c41a;
+  color: white;
+}
+
+.statusOverdue {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-color);
+}
+
+.emptyState p {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.customerHeader {
+  width: 100%;
+  background-color: var(--card-background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.customerInfo {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.transactionHistory {
+  width: 100%;
+}
+
+.loanCard {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.loanHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.loanStatus {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.overdue {
+  background-color: var(--error-light);
+  color: var(--error-color);
+}
+
+.active {
+  background-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.loanDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-radius: 8px;
+}
+
+.loanDetails p {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+.repaymentHistory {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.repaymentList {
+  margin-top: 1rem;
+}
+
+.repaymentItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: var(--background-color);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.subheading {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.loanInfo {
+  background-color: var(--background-color);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.loanInfo p {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--card-background);
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px var(--button-shadow);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  background-color: var(--hover-background);
+  border-radius: 50%;
+}
+
+.addButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.addButton:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.repayButton {
+  background-color: var(--success-color);
+  color: var(--repay-button-text);
+  border: none;
+  border-radius: 20px;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px var(--button-shadow);
+  min-width: 120px;
+  text-align: center;
+}
+
+.repayButton:hover {
+  background-color: var(--success-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--button-shadow-hover);
+}
+
+.repayButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px var(--button-shadow);
+}
+
+.repayButton:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: var(--repay-button-disabled-opacity);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .modal {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .addButton,
+  .repayButton {
+    width: 100%;
+  }
+
+  .repayButton {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .loanDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add theme-specific variables */
+:root {
+  /* Light theme colors */
+  --success-color: #52c41a;
+  --success-dark: #389e0d;
+  --success-light: #f6ffed;
+  --disabled-color: #d9d9d9;
+  --button-shadow: rgba(0, 0, 0, 0.1);
+  --button-shadow-hover: rgba(0, 0, 0, 0.15);
+  
+  /* Common theme variables */
+  --repay-button-text: #ffffff;
+  --repay-button-disabled-opacity: 0.7;
+}
+
+/* Dark theme colors */
+[data-theme='dark'] {
+  --success-color: #49aa19;
+  --success-dark: #52c41a;
+  --success-light: #162312;
+  --disabled-color: #434343;
+  --button-shadow: rgba(0, 0, 0, 0.3);
+  --button-shadow-hover: rgba(0, 0, 0, 0.4);
+} 
