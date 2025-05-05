@@ -13,6 +13,7 @@ A modern web application for small shopkeepers to manage customer credits digita
   - Add and manage customer profiles
   - View customer credit history
   - Track outstanding balances
+  - Export customer statements as PDF
 
 - 💰 Loan Management
   - Record new credit sales
@@ -30,6 +31,12 @@ A modern web application for small shopkeepers to manage customer credits digita
   - Quick status indicators
   - Outstanding amount summaries
   - Overdue payment alerts
+
+- 📄 Statement Generation
+  - Export customer statements as PDF
+  - Detailed loan and repayment history
+  - Professional statement layout
+  - Automatic page breaks for long statements
 
 - 🎨 User Interface
   - Responsive design for all devices
