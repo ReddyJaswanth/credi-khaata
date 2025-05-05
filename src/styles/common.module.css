@@ -542,4 +542,20 @@
   --disabled-color: #434343;
   --button-shadow: rgba(0, 0, 0, 0.3);
   --button-shadow-hover: rgba(0, 0, 0, 0.4);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.exportButton {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.exportButton:hover {
+  background-color: var(--secondary-hover-color);
 } 

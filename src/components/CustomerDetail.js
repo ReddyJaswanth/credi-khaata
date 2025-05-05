@@ -4,6 +4,7 @@ import { useCustomer } from '../context/CustomerContext';
 import styles from '../styles/common.module.css';
 import AddLoanForm from './AddLoanForm';
 import RepaymentForm from './RepaymentForm';
+import { jsPDF } from 'jspdf';
 
 const CustomerDetail = () => {
   const { id } = useParams();
@@ -11,6 +12,86 @@ const CustomerDetail = () => {
   const [showAddLoan, setShowAddLoan] = useState(false);
   const [showRepayment, setShowRepayment] = useState(false);
   const [selectedLoanId, setSelectedLoanId] = useState(null);
+
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.width;
+    let yPos = 20;
+    
+    // Set title
+    doc.setFontSize(20);
+    doc.text('Customer Statement', pageWidth / 2, yPos, { align: 'center' });
+    
+    // Customer Details
+    yPos += 20;
+    doc.setFontSize(12);
+    doc.text(`Customer Name: ${customer.name}`, 20, yPos);
+    yPos += 10;
+    doc.text(`Phone: ${customer.phone}`, 20, yPos);
+    yPos += 10;
+    doc.text(`Total Outstanding: ₹${totalOutstanding.toFixed(2)}`, 20, yPos);
+    yPos += 10;
+    doc.text(`Status: ${status}`, 20, yPos);
+    
+    // Loans Section
+    yPos += 20;
+    doc.setFontSize(14);
+    doc.text('Loan Details', 20, yPos);
+    
+    customer.loans.forEach(loan => {
+      const { repaidAmount, outstanding, isOverdue } = calculateLoanStatus(loan);
+      
+      // Check if we need a new page
+      if (yPos > 250) {
+        doc.addPage();
+        yPos = 20;
+      }
+      
+      yPos += 15;
+      doc.setFontSize(12);
+      doc.text(`Item: ${loan.item}`, 25, yPos);
+      yPos += 7;
+      doc.text(`Amount: ₹${loan.amount.toFixed(2)}`, 25, yPos);
+      yPos += 7;
+      doc.text(`Due Date: ${new Date(loan.dueDate).toLocaleDateString()}`, 25, yPos);
+      yPos += 7;
+      doc.text(`Outstanding: ₹${outstanding.toFixed(2)}`, 25, yPos);
+      yPos += 7;
+      doc.text(`Status: ${isOverdue ? 'Overdue' : 'Active'}`, 25, yPos);
+      
+      // Repayment History
+      if (loan.repayments.length > 0) {
+        yPos += 10;
+        doc.text('Repayment History:', 25, yPos);
+        
+        loan.repayments.forEach(repayment => {
+          if (yPos > 250) {
+            doc.addPage();
+            yPos = 20;
+          }
+          yPos += 7;
+          doc.text(
+            `${new Date(repayment.date).toLocaleDateString()} - ₹${repayment.amount.toFixed(2)}`,
+            30,
+            yPos
+          );
+        });
+      }
+      yPos += 15;
+    });
+    
+    // Add footer
+    doc.setFontSize(10);
+    doc.text(
+      `Generated on ${new Date().toLocaleDateString()}`,
+      pageWidth / 2,
+      280,
+      { align: 'center' }
+    );
+    
+    // Save the PDF
+    doc.save(`${customer.name}-statement.pdf`);
+  };
 
   if (loading) {
     return (
@@ -61,12 +142,20 @@ const CustomerDetail = () => {
             {status}
           </div>
         </div>
-        <button 
-          className={styles.addButton}
-          onClick={() => setShowAddLoan(true)}
-        >
-          Add New Loan
-        </button>
+        <div className={styles.actionButtons}>
+          <button 
+            className={styles.addButton}
+            onClick={() => setShowAddLoan(true)}
+          >
+            Add New Loan
+          </button>
+          <button 
+            className={`${styles.addButton} ${styles.exportButton}`}
+            onClick={exportToPDF}
+          >
+            Export Statement
+          </button>
+        </div>
       </div>
 
       {showAddLoan && (
